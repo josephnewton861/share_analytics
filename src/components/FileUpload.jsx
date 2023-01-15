@@ -7,7 +7,8 @@ const FileUpload = () => {
     // const [isFileSelected, setIsFilePicked] = useState(false);
 
     const changeFile = (value) => {
-        setSelectedFile(value);
+        setSelectedFile(value[0]);
+        console.log(value[0], 'file obj')
         // setIsFilePicked(true);
     }
 
@@ -16,7 +17,7 @@ const FileUpload = () => {
     }
     return (
     <div className="FileUpload">
-        <input type="file" name="file" onChange={e => changeFile(e.target.value)}/>
+        <input type="file" name="file" onChange={e => changeFile(e.target.files)}/>
         <button onClick={handleSubmission}>Submit</button>
         
     </div>

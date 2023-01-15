@@ -1,11 +1,24 @@
+import readXlsxFile from 'read-excel-file'
+
 export const readFileData = (file) => {
 
-    const reader = require('xlsx');
-    const readFile = reader.readFile(file)
+    getAllSheetNames(file).then(sheets => {
+        console.log(sheets, 'sheets')
+    })
+    
+    readXlsxFile(file).then((rows) => {
+        console.log(rows, 'here')
+    });    
+}
 
 
-    console.log(readFile);
-
-
+const getAllSheetNames = (file) =>  {
+    return readXlsxFile(file, {
+        getSheets: true
+        }).then((sheets) => {
+        return sheets.map((sheet) => {
+            return sheet.name;
+        });
+    });
 }
 
